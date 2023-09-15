@@ -25,7 +25,20 @@
             };
           }
         ];
-      }; 
+      };
+      "dpc-bmh" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/dpc-bmh
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.bmh = {
+              imports = [ ./home/dpc-bmh ];
+            };
+          }
+        ];
+      };
     };
   };
 }
